@@ -1,4 +1,4 @@
-<?php
+<?php ini_set( 'default_charset', 'iso-8859-1');
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
@@ -7,7 +7,8 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Educacao WEB',
+	'name'=>'Educacão WEB',
+	'charset'=>'iso-8859-1',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

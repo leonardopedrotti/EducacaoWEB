@@ -27,8 +27,8 @@ class tufs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, descricao, uf, id_pais', 'required'),
-			array('id, id_pais', 'numerical', 'integerOnly'=>true),
+			array('descricao, uf, id_pais', 'required'),
+			array('id_pais', 'numerical', 'integerOnly'=>true),
 			array('descricao, uf', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

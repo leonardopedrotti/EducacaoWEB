@@ -26,8 +26,7 @@ class tpaises extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, descricao, sigla', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('descricao, sigla', 'required'),
 			array('descricao, sigla', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

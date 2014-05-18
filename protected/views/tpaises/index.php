@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpaises',
+		'País',
 );
 
 $this->menu=array(
-	array('label'=>'Create tpaises', 'url'=>array('create')),
-	array('label'=>'Manage tpaises', 'url'=>array('admin')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Tpaises</h1>
+<h1>Países</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

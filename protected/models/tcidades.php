@@ -27,8 +27,8 @@ class tcidades extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, descricao, sigla, id_uf', 'required'),
-			array('id, id_uf', 'numerical', 'integerOnly'=>true),
+			array('descricao, sigla, id_uf', 'required'),
+			array('id_uf', 'numerical', 'integerOnly'=>true),
 			array('descricao, sigla', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

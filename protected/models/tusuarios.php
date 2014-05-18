@@ -29,8 +29,8 @@ class tusuarios extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, login, senha, tipo, ativo, id_pessoa', 'required'),
-			array('id, ativo, id_pessoa', 'numerical', 'integerOnly'=>true),
+			array('login, senha, tipo, ativo, id_pessoa', 'required'),
+			array('ativo, id_pessoa', 'numerical', 'integerOnly'=>true),
 			array('login, senha', 'length', 'max'=>45),
 			array('tipo', 'length', 'max'=>1),
 			// The following rule is used by search().

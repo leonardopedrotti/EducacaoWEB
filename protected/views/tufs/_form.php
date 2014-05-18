@@ -20,13 +20,13 @@
 		<?php echo $form->textField($model,'uf',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'uf'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_pais'); ?>
-		<?php echo $form->textField($model,'id_pais'); ?>
+		<?php echo $form->dropDownList($model,'id_pais', CHtml::listData(Tpaises::model()->findAll(), 'id', 'descricao')); ?>
 		<?php echo $form->error($model,'id_pais'); ?>
 	</div>
-
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -3,7 +3,6 @@
 return array(
 	/*
 	'sample1'=>array(
-		'id' => '',
 		'login' => '',
 		'senha' => '',
 		'tipo' => '',
@@ -11,7 +10,6 @@ return array(
 		'id_pessoa' => '',
 	),
 	'sample2'=>array(
-		'id' => '',
 		'login' => '',
 		'senha' => '',
 		'tipo' => '',

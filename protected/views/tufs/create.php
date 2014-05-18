@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
 	'Tufs'=>array('index'),
-	'Create',
+	'Novo',
 );
 
 $this->menu=array(
-	array('label'=>'List tufs', 'url'=>array('index')),
-	array('label'=>'Manage tufs', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create tufs</h1>
+<h1>Novo UF</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

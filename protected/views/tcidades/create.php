@@ -6,7 +6,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List tcidades', 'url'=>array('index')),
-	array('label'=>'Manage tcidades', 'url'=>array('admin')),
 );
 ?>
 

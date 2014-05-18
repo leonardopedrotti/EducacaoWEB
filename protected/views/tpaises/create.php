@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpaises'=>array('index'),
-	'Create',
+		'Tpaises'=>array('index'),
+		'Novo',
 );
 
 $this->menu=array(
-	array('label'=>'List tpaises', 'url'=>array('index')),
-	array('label'=>'Manage tpaises', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create tpaises</h1>
+<h1>Novo País</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,7 +3,6 @@
 return array(
 	/*
 	'sample1'=>array(
-		'id' => '',
 		'nome' => '',
 		'dt_nasc' => '',
 		'tel_cel' => '',
@@ -12,7 +11,6 @@ return array(
 		'id_cidade' => '',
 	),
 	'sample2'=>array(
-		'id' => '',
 		'nome' => '',
 		'dt_nasc' => '',
 		'tel_cel' => '',

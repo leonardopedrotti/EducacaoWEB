@@ -27,8 +27,8 @@ class tinstituicoes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, razao_social, nome_fan, id_cidade', 'required'),
-			array('id, id_cidade', 'numerical', 'integerOnly'=>true),
+			array('razao_social, nome_fan, id_cidade', 'required'),
+			array('id_cidade', 'numerical', 'integerOnly'=>true),
 			array('razao_social, nome_fan', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

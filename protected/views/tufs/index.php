@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Tufs',
+	'UF',
 );
 
 $this->menu=array(
-	array('label'=>'Create tufs', 'url'=>array('create')),
-	array('label'=>'Manage tufs', 'url'=>array('admin')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Tufs</h1>
+<h1>UF</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

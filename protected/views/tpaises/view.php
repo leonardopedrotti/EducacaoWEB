@@ -1,19 +1,19 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpaises'=>array('index'),
-	$model->id,
+		'Tpaises'=>array('index'),
+		$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List tpaises', 'url'=>array('index')),
-	array('label'=>'Create tpaises', 'url'=>array('create')),
-	array('label'=>'Update tpaises', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete tpaises', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage tpaises', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Alterar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Excluir', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Tem certeza que deseja excluir este registro?')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View tpaises #<?php echo $model->id; ?></h1>
+<h1>País <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

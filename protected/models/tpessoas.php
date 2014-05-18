@@ -30,8 +30,8 @@ class tpessoas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, nome, tel_cel, endereco, id_cidade', 'required'),
-			array('id, id_cidade', 'numerical', 'integerOnly'=>true),
+			array('nome, tel_cel, endereco, id_cidade', 'required'),
+			array('id_cidade', 'numerical', 'integerOnly'=>true),
 			array('nome, tel_cel, tel_res, endereco', 'length', 'max'=>45),
 			array('dt_nasc', 'safe'),
 			// The following rule is used by search().

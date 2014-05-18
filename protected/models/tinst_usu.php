@@ -26,8 +26,8 @@ class tinst_usu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, id_usuario, id_instituicao', 'required'),
-			array('id, id_usuario, id_instituicao', 'numerical', 'integerOnly'=>true),
+			array('id_usuario, id_instituicao', 'required'),
+			array('id_usuario, id_instituicao', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, id_usuario, id_instituicao', 'safe', 'on'=>'search'),
