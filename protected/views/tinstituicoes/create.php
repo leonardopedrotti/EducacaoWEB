@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
 	'Tinstituicoes'=>array('index'),
-	'Create',
+	'Novo',
 );
 
 $this->menu=array(
-	array('label'=>'List tinstituicoes', 'url'=>array('index')),
-	array('label'=>'Manage tinstituicoes', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create tinstituicoes</h1>
+<h1>Nova Instituição</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

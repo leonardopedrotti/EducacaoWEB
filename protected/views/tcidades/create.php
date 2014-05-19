@@ -1,14 +1,15 @@
 <?php
 $this->breadcrumbs=array(
 	'Tcidades'=>array('index'),
-	'Create',
+	'Novo',
 );
 
 $this->menu=array(
-	array('label'=>'List tcidades', 'url'=>array('index')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create tcidades</h1>
+<h1>Nova Cidade</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

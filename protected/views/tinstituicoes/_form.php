@@ -23,9 +23,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_cidade'); ?>
-		<?php echo $form->textField($model,'id_cidade'); ?>
+		<?php echo $form->dropDownList($model,'id_cidade', CHtml::listData(Tcidades::model()->findAll(), 'id', 'descricao')); ?>
 		<?php echo $form->error($model,'id_cidade'); ?>
 	</div>
+	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

@@ -20,10 +20,10 @@
 		<?php echo $form->textField($model,'sigla',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'sigla'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_uf'); ?>
-		<?php echo $form->textField($model,'id_uf'); ?>
+		<?php echo $form->dropDownList($model,'id_uf', CHtml::listData(Tufs::model()->findAll(), 'id', 'descricao')); ?>
 		<?php echo $form->error($model,'id_uf'); ?>
 	</div>
 

@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
 	'Tinstituicoes'=>array('index'),
-	'Manage',
+	'Pesquisar',
 );
 
 $this->menu=array(
-	array('label'=>'List tinstituicoes', 'url'=>array('index')),
-	array('label'=>'Create tinstituicoes', 'url'=>array('create')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,19 +23,12 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Tinstituicoes</h1>
+<h1>Pesquisar Instituição</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+Você pode, opcionalmente, digitar um operador de comparação (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+or <b>=</b>) no início de cada um dos campos de pesquisa para especificar como a comparação deve ser feita.
 </p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'tinstituicoes-grid',

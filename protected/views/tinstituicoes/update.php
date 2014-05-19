@@ -2,17 +2,17 @@
 $this->breadcrumbs=array(
 	'Tinstituicoes'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Alterar',
 );
 
 $this->menu=array(
-	array('label'=>'List tinstituicoes', 'url'=>array('index')),
-	array('label'=>'Create tinstituicoes', 'url'=>array('create')),
-	array('label'=>'View tinstituicoes', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage tinstituicoes', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Exibir', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update tinstituicoes <?php echo $model->id; ?></h1>
+<h1>Alterar Instituição <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

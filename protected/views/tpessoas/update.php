@@ -2,17 +2,17 @@
 $this->breadcrumbs=array(
 	'Tpessoases'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Alterar',
 );
 
 $this->menu=array(
-	array('label'=>'List tpessoas', 'url'=>array('index')),
-	array('label'=>'Create tpessoas', 'url'=>array('create')),
-	array('label'=>'View tpessoas', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage tpessoas', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Exibir', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update tpessoas <?php echo $model->id; ?></h1>
+<h1>Alterar Pessoa <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

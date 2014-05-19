@@ -5,15 +5,15 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List tpessoas', 'url'=>array('index')),
-	array('label'=>'Create tpessoas', 'url'=>array('create')),
-	array('label'=>'Update tpessoas', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete tpessoas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage tpessoas', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Alterar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Excluir', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Tem certeza que deseja excluir este registro?')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View tpessoas #<?php echo $model->id; ?></h1>
+<h1>Pessoa <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

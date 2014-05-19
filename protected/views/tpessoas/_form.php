@@ -20,7 +20,7 @@
 		<?php echo $form->textField($model,'dt_nasc'); ?>
 		<?php echo $form->error($model,'dt_nasc'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'tel_cel'); ?>
 		<?php echo $form->textField($model,'tel_cel',array('size'=>45,'maxlength'=>45)); ?>
@@ -38,10 +38,10 @@
 		<?php echo $form->textField($model,'endereco',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'endereco'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_cidade'); ?>
-		<?php echo $form->textField($model,'id_cidade'); ?>
+		<?php echo $form->dropDownList($model,'id_cidade', CHtml::listData(Tcidades::model()->findAll(), 'id', 'descricao')); ?>
 		<?php echo $form->error($model,'id_cidade'); ?>
 	</div>
 

@@ -5,15 +5,15 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List tcidades', 'url'=>array('index')),
-	array('label'=>'Create tcidades', 'url'=>array('create')),
-	array('label'=>'Update tcidades', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete tcidades', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage tcidades', 'url'=>array('admin')),
+	array('label'=>'Listar', 'url'=>array('index')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Alterar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Excluir', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Tem certeza que deseja excluir este registro?')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View tcidades #<?php echo $model->id; ?></h1>
+<h1>Cidade <?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

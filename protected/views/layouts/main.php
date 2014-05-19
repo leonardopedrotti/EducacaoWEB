@@ -36,7 +36,7 @@
 				
 				Bem-vindo <?php if(!Yii::app()->user->isGuest){ 
 									if($tusuarios->tipo == '0') { 
-										echo "adminsitrador ";
+										echo "administrador ";
 									} else if($tusuarios->tipo == '1'){
 										echo "professor "; 
 									} else if($tusuarios->tipo == '2'){

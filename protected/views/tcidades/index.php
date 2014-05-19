@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Tcidades',
+	'Cidade',
 );
 
 $this->menu=array(
-	array('label'=>'Create tcidades', 'url'=>array('create')),
-	array('label'=>'Manage tcidades', 'url'=>array('admin')),
+	array('label'=>'Novo', 'url'=>array('create')),
+	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Tcidades</h1>
+<h1>Cidade</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
