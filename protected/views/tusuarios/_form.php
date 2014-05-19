@@ -32,10 +32,10 @@
 		<?php echo $form->textField($model,'ativo'); ?>
 		<?php echo $form->error($model,'ativo'); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_pessoa'); ?>
-		<?php echo $form->textField($model,'id_pessoa'); ?>
+		<?php echo $form->dropDownList($model,'id_pessoa', CHtml::listData(Tpessoas::model()->findAll(), 'id', 'nome')); ?>
 		<?php echo $form->error($model,'id_pessoa'); ?>
 	</div>
 

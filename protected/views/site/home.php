@@ -28,8 +28,9 @@ array('label'=>'Manage tpaises', 'url'=>array('admin')),
 	array('label'=>'Cadastro de Cidade', 'url'=>array('/tcidades/index'), 'visible'=>$tusuarios->tipo == '0'),
 	array('label'=>'Cadastro de Pessoa', 'url'=>array('/tpessoas/index'), 'visible'=>$tusuarios->tipo == '0'),
 	array('label'=>'Cadastro de Instituição', 'url'=>array('/tinstituicoes/index'), 'visible'=>$tusuarios->tipo == '0'),
+	array('label'=>'Cadastro de Usuário', 'url'=>array('/tusuarios/index'), 'visible'=>$tusuarios->tipo == '0'),
 	array('label'=>'Registrar Frequencia', 'url'=>array('/frequencia'), 'visible'=>$tusuarios->tipo == '1'),
-	array('label'=>'Registrar Notas', 'url'=>array('/nota/index'), 'visible'=>$tusuarios->tipo == '1')
+	array('label'=>'Registrar Notas', 'url'=>array('/nota/index'), 'visible'=>$tusuarios->tipo == '1')	
 	),
 			'htmlOptions'=>array('class'=>'operations'),
 	));
