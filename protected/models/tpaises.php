@@ -52,8 +52,8 @@ class tpaises extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'descricao' => 'Descricao',
+			'id' => 'Código',
+			'descricao' => 'Descrição',
 			'sigla' => 'Sigla',
 		);
 	}

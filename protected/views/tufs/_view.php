@@ -13,7 +13,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_pais')); ?>:</b>
-	<?php echo CHtml::encode($data->id_pais); ?>
+	<?php echo CHtml::encode($data->id_pais0->id), (' - '), ($data->id_pais0->descricao);?>
 	<br />
 
 

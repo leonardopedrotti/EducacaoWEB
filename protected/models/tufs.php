@@ -55,10 +55,10 @@ class tufs extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'descricao' => 'Descricao',
+			'id' => 'Código',
+			'descricao' => 'Descrição',
 			'uf' => 'Uf',
-			'id_pais' => 'Id Pais',
+			'id_pais' => 'País',
 		);
 	}
 

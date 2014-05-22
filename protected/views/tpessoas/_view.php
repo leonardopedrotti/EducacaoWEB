@@ -25,7 +25,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_cidade')); ?>:</b>
-	<?php echo CHtml::encode($data->id_cidade); ?>
+	<?php echo CHtml::encode($data->id_cidade0->id), (' - '), ($data->id_cidade0->descricao);?>
 	<br />
 
 

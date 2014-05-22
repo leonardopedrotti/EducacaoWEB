@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpessoases'=>array('index'),
+	'Pessoa'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Alterar',
 );

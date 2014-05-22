@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tufs'=>array('index'),
+	'Uf'=>array('index'),
 	'Pesquisar',
 );
 
@@ -38,7 +38,7 @@ or <b>=</b>) no início de cada um dos campos de pesquisa para especificar como a
 		'id',
 		'descricao',
 		'uf',
-		'id_pais',
+		array('name'=>'id_pais', 'header'=>'País', 'value'=>'$data->id_pais0->descricao'),
 		array(
 			'class'=>'CButtonColumn',
 		),

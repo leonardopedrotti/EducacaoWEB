@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tufs'=>array('index'),
+	'Uf'=>array('index'),
 	'Novo',
 );
 

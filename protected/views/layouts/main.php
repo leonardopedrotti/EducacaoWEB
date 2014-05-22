@@ -43,7 +43,7 @@
 										echo "aluno "; 
 									} 
 									
-									echo $tusuarios->id_pessoa0->nome;
+									echo ($tusuarios->id_pessoa0->nome),(' - '),($tusuarios->id_instituicao0->nome_fan);
 								}}?>
 				
 		

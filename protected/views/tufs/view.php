@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tufs'=>array('index'),
+	'Uf'=>array('index'),
 	$model->id,
 );
 
@@ -21,6 +21,6 @@ $this->menu=array(
 		'id',
 		'descricao',
 		'uf',
-		'id_pais',
+		array('label'=>'País', 'value'=>$model->id_pais0->descricao),
 	),
 )); ?>

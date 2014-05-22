@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tcidades'=>array('index'),
+	'Cidade'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Alterar',
 );

@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tusuarioses'=>array('index'),
+	'Usuário'=>array('index'),
 	$model->id,
 );
 
@@ -8,7 +8,7 @@ $this->menu=array(
 	array('label'=>'Listar', 'url'=>array('index')),
 	array('label'=>'Novo', 'url'=>array('create')),
 	array('label'=>'Alterar', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Excluir', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Tem certeza que deseja excluir este registro?')),
+	array('label'=>'Excluir', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Pesquisar', 'url'=>array('admin')),
 );
 ?>
@@ -23,6 +23,7 @@ $this->menu=array(
 		'senha',
 		'tipo',
 		'ativo',
-		'id_pessoa',
+		array('label'=>'Pessoa', 'value'=>$model->id_pessoa0->nome),
+		array('label'=>'Instituição', 'value'=>$model->id_instituicao0->nome_fan),
 	),
 )); ?>

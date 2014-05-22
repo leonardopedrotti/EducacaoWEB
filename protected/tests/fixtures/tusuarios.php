@@ -8,6 +8,7 @@ return array(
 		'tipo' => '',
 		'ativo' => '',
 		'id_pessoa' => '',
+		'id_instituicao' => '',
 	),
 	'sample2'=>array(
 		'login' => '',
@@ -15,6 +16,7 @@ return array(
 		'tipo' => '',
 		'ativo' => '',
 		'id_pessoa' => '',
+		'id_instituicao' => '',
 	),
 	*/
 );

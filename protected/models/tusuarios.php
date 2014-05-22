@@ -10,6 +10,7 @@
  * @property string $tipo
  * @property integer $ativo
  * @property integer $id_pessoa
+ * @property integer $id_instituicao
  */
 class tusuarios extends CActiveRecord
 {
@@ -29,13 +30,13 @@ class tusuarios extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('login, senha, tipo, ativo, id_pessoa', 'required'),
-			array('ativo, id_pessoa', 'numerical', 'integerOnly'=>true),
+			array('login, senha, tipo, ativo, id_pessoa, id_instituicao', 'required'),
+			array('ativo, id_pessoa, id_instituicao', 'numerical', 'integerOnly'=>true),
 			array('login, senha', 'length', 'max'=>45),
 			array('tipo', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, login, senha, tipo, ativo, id_pessoa', 'safe', 'on'=>'search'),
+			array('id, login, senha, tipo, ativo, id_pessoa, id_instituicao', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +48,7 @@ class tusuarios extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tinst_usus' => array(self::HAS_MANY, 'TinstUsu', 'id_usuario'),
+			'id_instituicao0' => array(self::BELONGS_TO, 'Tinstituicoes', 'id_instituicao'),
 			'id_pessoa0' => array(self::BELONGS_TO, 'Tpessoas', 'id_pessoa'),
 		);
 	}
@@ -58,12 +59,13 @@ class tusuarios extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'id' => 'Código',
 			'login' => 'Login',
 			'senha' => 'Senha',
 			'tipo' => 'Tipo',
 			'ativo' => 'Ativo',
-			'id_pessoa' => 'Id Pessoa',
+			'id_pessoa' => 'Pessoa',
+			'id_instituicao' => 'Instituição',
 		);
 	}
 
@@ -96,6 +98,8 @@ class tusuarios extends CActiveRecord
 		$criteria->compare('ativo',$this->ativo);
 
 		$criteria->compare('id_pessoa',$this->id_pessoa);
+
+		$criteria->compare('id_instituicao',$this->id_instituicao);
 
 		return new CActiveDataProvider('tusuarios', array(
 			'criteria'=>$criteria,

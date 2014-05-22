@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpaises'=>array('index'),
+	'País'=>array('index'),
 	'Pesquisar',
 );
 

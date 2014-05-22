@@ -59,13 +59,13 @@ class tpessoas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
+			'id' => 'Código',
 			'nome' => 'Nome',
-			'dt_nasc' => 'Dt Nasc',
+			'dt_nasc' => 'Nascimento',
 			'tel_cel' => 'Tel Cel',
 			'tel_res' => 'Tel Res',
-			'endereco' => 'Endereco',
-			'id_cidade' => 'Id Cidade',
+			'endereco' => 'Endereçoo',
+			'id_cidade' => 'Cidade',
 		);
 	}
 

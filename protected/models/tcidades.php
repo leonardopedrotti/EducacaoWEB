@@ -56,10 +56,10 @@ class tcidades extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'descricao' => 'Descricao',
+			'id' => 'Código',
+			'descricao' => 'Descricão',
 			'sigla' => 'Sigla',
-			'id_uf' => 'Id Uf',
+			'id_uf' => 'Uf',
 		);
 	}
 

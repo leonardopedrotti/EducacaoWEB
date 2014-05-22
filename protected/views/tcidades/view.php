@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tcidades'=>array('index'),
+	'Cidade'=>array('index'),
 	$model->id,
 );
 
@@ -21,6 +21,6 @@ $this->menu=array(
 		'id',
 		'descricao',
 		'sigla',
-		'id_uf',
+		array('label'=>'Uf', 'value'=>$model->id_uf0->descricao),
 	),
 )); ?>

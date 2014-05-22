@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tufs'=>array('index'),
+	'Uf'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Alterar',
 );

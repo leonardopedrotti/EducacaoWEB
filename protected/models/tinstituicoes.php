@@ -55,10 +55,10 @@ class tinstituicoes extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'Id',
-			'razao_social' => 'Razao Social',
-			'nome_fan' => 'Nome Fan',
-			'id_cidade' => 'Id Cidade',
+			'id' => 'Codigo',
+			'razao_social' => 'Razão Social',
+			'nome_fan' => 'Nome Fantasia',
+			'id_cidade' => 'Cidade',
 		);
 	}
 

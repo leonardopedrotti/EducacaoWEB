@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tinstituicoes'=>array('index'),
+	'Instituição'=>array('index'),
 	'Pesquisar',
 );
 
@@ -38,7 +38,7 @@ or <b>=</b>) no início de cada um dos campos de pesquisa para especificar como a
 		'id',
 		'razao_social',
 		'nome_fan',
-		'id_cidade',
+		array('name'=>'id_cidade', 'header'=>'Cidade', 'value'=>'$data->id_cidade0->descricao'),
 		array(
 			'class'=>'CButtonColumn',
 		),

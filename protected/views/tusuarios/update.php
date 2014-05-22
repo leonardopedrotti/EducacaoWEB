@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tusuarioses'=>array('index'),
+	'Usuário'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Alterar',
 );

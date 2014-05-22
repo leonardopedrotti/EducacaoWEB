@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tpessoases'=>array('index'),
+	'Pessoa'=>array('index'),
 	$model->id,
 );
 
@@ -24,6 +24,6 @@ $this->menu=array(
 		'tel_cel',
 		'tel_res',
 		'endereco',
-		'id_cidade',
+		array('label'=>'Cidade', 'value'=>$model->id_cidade0->descricao),
 	),
 )); ?>

@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tusuarioses'=>array('index'),
+	'Usuário'=>array('index'),
 	'Pesquisar',
 );
 
@@ -40,7 +40,8 @@ or <b>=</b>) no início de cada um dos campos de pesquisa para especificar como a
 		'senha',
 		'tipo',
 		'ativo',
-		'id_pessoa',
+		array('name'=>'id_pessoa', 'header'=>'Pessoa', 'value'=>'$data->id_pessoa0->nome'),
+		array('name'=>'id_instituicao', 'header'=>'Pessoa', 'value'=>'$data->id_instituicao0->nome_fan'),
 		array(
 			'class'=>'CButtonColumn',
 		),

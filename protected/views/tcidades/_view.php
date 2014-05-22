@@ -13,7 +13,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_uf')); ?>:</b>
-	<?php echo CHtml::encode($data->id_uf); ?>
+	<?php echo CHtml::encode($data->id_uf0->id), (' - '), ($data->id_uf0->descricao);?>
 	<br />
 
 

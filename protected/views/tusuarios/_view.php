@@ -21,7 +21,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_pessoa')); ?>:</b>
-	<?php echo CHtml::encode($data->id_pessoa); ?>
+	<?php echo CHtml::encode($data->id_pessoa0->id), (' - '), ($data->id_pessoa0->nome);?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id_instituicao')); ?>:</b>
+	<?php echo CHtml::encode($data->id_instituicao0->id), (' - '), ($data->id_instituicao0->nome_fan);?>
 	<br />
 
 

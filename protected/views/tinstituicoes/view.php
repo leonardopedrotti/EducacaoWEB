@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Tinstituicoes'=>array('index'),
+	'Instituição'=>array('index'),
 	$model->id,
 );
 
@@ -21,6 +21,6 @@ $this->menu=array(
 		'id',
 		'razao_social',
 		'nome_fan',
-		'id_cidade',
+		array('label'=>'Cidade', 'value'=>$model->id_cidade0->descricao),
 	),
 )); ?>

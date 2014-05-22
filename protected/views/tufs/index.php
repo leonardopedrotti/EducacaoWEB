@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'UF',
+	'Uf',
 );
 
 $this->menu=array(
