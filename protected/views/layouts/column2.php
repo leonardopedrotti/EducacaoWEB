@@ -18,6 +18,8 @@
 			array('label'=>'Pessoa', 'url'=>array('/tpessoas/index'), 'visible'=>$tusuarios->tipo == '0'),
 			array('label'=>'Instituição', 'url'=>array('/tinstituicoes/index'), 'visible'=>$tusuarios->tipo == '0'),
 			array('label'=>'Usuário', 'url'=>array('/tusuarios/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Curso', 'url'=>array('/tcursos/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Disciplina', 'url'=>array('/tdisciplina/index'), 'visible'=>$tusuarios->tipo == '0'),
 			array('label'=>'Frequencia', 'url'=>array('/frequencia'), 'visible'=>$tusuarios->tipo == '1'),
 			array('label'=>'Notas', 'url'=>array('/nota/index'), 'visible'=>$tusuarios->tipo == '1')	
 			),
