@@ -60,17 +60,13 @@
 			'items'=>array(
 				array('label'=>'Início', 'url'=>array('/site/index'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Menus', 'url'=>array('/site/home'), 'visible'=>!Yii::app()->user->isGuest),
+				//array('label'=>'Menus', 'url'=>array('/site/home'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
 
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+	
 
 	<?php echo $content; ?>
 

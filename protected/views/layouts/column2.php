@@ -1,6 +1,36 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="span-19">
+
+
+<div class="span-4">
+	<div id="content">
+		<?php
+			$tusuarios = $_SESSION['usuario'];
+	
+			$this->beginWidget('zii.widgets.CPortlet', array(
+					'title'=>'Cadastros',
+			));
+			$this->widget('zii.widgets.CMenu', array(
+					'items'=>array(
+			array('label'=>'País', 'url'=>array('/tpaises/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'UF', 'url'=>array('/tufs/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Cidade', 'url'=>array('/tcidades/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Pessoa', 'url'=>array('/tpessoas/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Instituição', 'url'=>array('/tinstituicoes/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Usuário', 'url'=>array('/tusuarios/index'), 'visible'=>$tusuarios->tipo == '0'),
+			array('label'=>'Frequencia', 'url'=>array('/frequencia'), 'visible'=>$tusuarios->tipo == '1'),
+			array('label'=>'Notas', 'url'=>array('/nota/index'), 'visible'=>$tusuarios->tipo == '1')	
+			),
+					'htmlOptions'=>array('class'=>'operations'),
+			));
+			$this->endWidget();
+		?>
+	</div><!-- content -->
+</div>
+
+
+
+<div class="span-15">
 	<div id="content">
 		<?php echo $content; ?>
 	</div><!-- content -->
