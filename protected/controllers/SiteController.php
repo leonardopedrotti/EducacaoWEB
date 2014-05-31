@@ -145,8 +145,17 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect('index.php?r=tpaises/index');
+			if($model->validate() && $model->login()){
+				$tusuarios = $_SESSION['usuario'];
+				if($tusuarios->tipo == '0') {
+					$this->redirect('index.php?r=tpaises/index');
+				} else if($tusuarios->tipo == '1'){
+					$this->redirect('index.php?r=tturma/indexProAtivas');
+				} else if($tusuarios->tipo == '2'){
+					$this->redirect('index.php?r=site/home');
+				}
+			}
+				
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));

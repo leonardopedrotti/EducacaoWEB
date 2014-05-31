@@ -2,7 +2,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
 
 
-<div class="span-4">
+<div class="span-5">
 	<div id="content">
 		<?php
 			$tusuarios = $_SESSION['usuario'];
@@ -20,8 +20,8 @@
 			array('label'=>'Usuário', 'url'=>array('/tusuarios/index'), 'visible'=>$tusuarios->tipo == '0'),
 			array('label'=>'Curso', 'url'=>array('/tcursos/index'), 'visible'=>$tusuarios->tipo == '0'),
 			array('label'=>'Disciplina', 'url'=>array('/tdisciplina/index'), 'visible'=>$tusuarios->tipo == '0'),
-			array('label'=>'Frequencia', 'url'=>array('/frequencia'), 'visible'=>$tusuarios->tipo == '1'),
-			array('label'=>'Notas', 'url'=>array('/nota/index'), 'visible'=>$tusuarios->tipo == '1')	
+			array('label'=>'Turmas Ativas', 'url'=>array('/tturma/indexProAtivas'), 'visible'=>$tusuarios->tipo == '1'),
+			array('label'=>'Turmas Encerradas', 'url'=>array('/tturma/indexProEnc'), 'visible'=>$tusuarios->tipo == '1'),
 			),
 					'htmlOptions'=>array('class'=>'operations'),
 			));
@@ -32,7 +32,7 @@
 
 
 
-<div class="span-15">
+<div class="span-14">
 	<div id="content">
 		<?php echo $content; ?>
 	</div><!-- content -->
