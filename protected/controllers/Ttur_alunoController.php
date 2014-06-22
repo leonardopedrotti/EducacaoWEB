@@ -12,6 +12,8 @@ class Ttur_alunoController extends Controller
 	 * @var CActiveRecord the currently loaded data model instance.
 	 */
 	private $_model;
+	
+	public $_data;
 
 	/**
 	 * @return array action filters
@@ -32,17 +34,17 @@ class Ttur_alunoController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','confirmarPresenca','confirmarAusencia','consultar'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','indexPro'),
+				'actions'=>array('create','update','indexPro','admin','delete'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array(),
 				'users'=>array('admin'),
-			),
+			),*/
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -137,14 +139,371 @@ class Ttur_alunoController extends Controller
 	
 	public function actionIndexPro()
 	{
-		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+		$data = new DateTime();
+		$model=new ttur_aluno;
+		$model->id_turma = $_GET['idTurma'];
+		$model->data = $data->format('Y-m-d');		
+		
+		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
 				'criteria'=>array(
-						'condition'=>'id_turma='.$_GET['idTurma'],
-				)
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+								'freq.frequencia as frequencia',
+						),
+						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
+						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
 		));
 		
 		$this->render('indexPro',array(
 				'dataProvider'=>$dataProvider,
+				'model'=>$model,
+		));*/
+		
+		
+		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+						),
+						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $ttur_aluno) {
+			
+			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.frequencia',
+						),
+						'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$data->format('Y-m-d').'\'',
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+			));
+			
+			$iteratorFreq = new CDataProviderIterator($dataProviderFreq);
+			foreach($iteratorFreq as $tfrequencia) {
+				$ttur_aluno->frequencia = $tfrequencia->frequencia;
+			}			
+		}		
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+				'model'=>$model,
+		));
+	}
+	
+	public function actionConsultar()
+	{
+		
+		
+		//$data = new DateTime();
+		$model=new ttur_aluno;
+		$model->id_turma = $_GET['idTurma'];
+		$model->data = $_GET['data'];
+	
+		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+								'freq.frequencia as frequencia',
+						),
+						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
+						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$_GET['data'].'\' )',
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+	
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+				'model'=>$model,
+		));*/
+		
+		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+						),
+						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $ttur_aluno) {
+				
+			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
+					'criteria'=>array(
+							'select'=>array(
+									't.frequencia',
+							),
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'limit'=>100,
+							'together'=>false,
+							'with'=>array()
+					),
+					'pagination'=>false,
+			));
+				
+			$iteratorFreq = new CDataProviderIterator($dataProviderFreq);
+			foreach($iteratorFreq as $tfrequencia) {
+				$ttur_aluno->frequencia = $tfrequencia->frequencia;
+			}
+		}
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+				'model'=>$model,
+		));
+	}
+	
+	
+	public function actionConfirmarPresenca()
+	{
+		$model=new ttur_aluno;
+		$model->id_turma = $_GET['idTurma'];
+		$model->data = $_GET['data'];	
+		$model->id_aluno = $_GET['idAluno'];	
+		
+		$encontrou = false;
+		$data = new DateTime();
+		
+		$dataProvider=new CActiveDataProvider('tfrequencia', array(
+				'criteria'=>array(
+						'condition'=>'data = \''.$_GET['data'].'\' AND id_aluno='.$_GET['idAluno'],
+				)
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $tfrequencia) {
+			$tfrequencia->frequencia = 1;
+			$tfrequencia->save();
+			$encontrou = true;
+		}
+		
+		if(!$encontrou){
+			$modelFreq=new tfrequencia;
+			$modelFreq->id_aluno = $_GET['idAluno'];
+			$modelFreq->frequencia = 1;
+			$modelFreq->data = $_GET['data'];
+			$modelFreq->save();
+		}
+		
+		//$data = new DateTime();
+		
+		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+								'freq.frequencia as frequencia',
+						),
+						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
+						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+		));*/
+		
+		
+		
+		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+						),
+						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $ttur_aluno) {
+		
+			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
+					'criteria'=>array(
+							'select'=>array(
+									't.frequencia',
+							),
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'limit'=>100,
+							'together'=>false,
+							'with'=>array()
+					),
+					'pagination'=>false,
+			));
+		
+			$iteratorFreq = new CDataProviderIterator($dataProviderFreq);
+			foreach($iteratorFreq as $tfrequencia) {
+				$ttur_aluno->frequencia = $tfrequencia->frequencia;
+			}
+		}
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+				'model'=>$model,
+		));		
+	}
+	
+	public function actionConfirmarAusencia()
+	{
+		/*$encontrou = false;
+		$data = new DateTime();
+		
+		$dataProvider=new CActiveDataProvider('tfrequencia', array(
+				'criteria'=>array(
+						'condition'=>'data = \''.$data->format('Y-m-d').'\' AND id_aluno='.$_GET['idAluno'],
+				)
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $tfrequencia) {
+			$tfrequencia->frequencia = 0;
+			$tfrequencia->save();
+			$encontrou = true;
+		}
+		
+		if(!$encontrou){
+			$model=new tfrequencia;
+			$model->id_aluno = $_GET['idAluno'];
+			$model->frequencia = 0;
+			$model->data = $data->format('Y-m-d');
+			$model->save();
+		}
+		
+		$data = new DateTime();
+		
+		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+								'freq.frequencia as frequencia',
+						),
+						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
+						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+		));*/
+		
+		
+		
+		$model=new ttur_aluno;
+		$model->id_turma = $_GET['idTurma'];
+		$model->data = $_GET['data'];
+		$model->id_aluno = $_GET['idAluno'];
+		
+		$encontrou = false;
+		$data = new DateTime();
+		
+		$dataProvider=new CActiveDataProvider('tfrequencia', array(
+				'criteria'=>array(
+						'condition'=>'data = \''.$_GET['data'].'\' AND id_aluno='.$_GET['idAluno'],
+				)
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $tfrequencia) {
+			$tfrequencia->frequencia = 0;
+			$tfrequencia->save();
+			$encontrou = true;
+		}
+		
+		if(!$encontrou){
+			$modelFreq=new tfrequencia;
+			$modelFreq->id_aluno = $_GET['idAluno'];
+			$modelFreq->frequencia = 0;
+			$modelFreq->data = $_GET['data'];
+			$modelFreq->save();
+		}
+		
+		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
+				'criteria'=>array(
+						'select'=>array(
+								't.id',
+								't.id_turma',
+								't.id_aluno',
+						),
+						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'limit'=>100,
+						'together'=>false,
+						'with'=>array()
+				),
+				'pagination'=>false,
+		));
+		
+		$iterator = new CDataProviderIterator($dataProvider);
+		foreach($iterator as $ttur_aluno) {
+		
+			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
+					'criteria'=>array(
+							'select'=>array(
+									't.frequencia',
+							),
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'limit'=>100,
+							'together'=>false,
+							'with'=>array()
+					),
+					'pagination'=>false,
+			));
+		
+			$iteratorFreq = new CDataProviderIterator($dataProviderFreq);
+			foreach($iteratorFreq as $tfrequencia) {
+				$ttur_aluno->frequencia = $tfrequencia->frequencia;
+			}
+		}
+		
+		$this->render('indexPro',array(
+				'dataProvider'=>$dataProvider,
+				'model'=>$model,
 		));
 	}
 

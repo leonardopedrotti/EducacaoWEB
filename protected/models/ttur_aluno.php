@@ -17,6 +17,9 @@ class ttur_aluno extends CActiveRecord
 	{
 		return 'ttur_aluno';
 	}
+	
+	public $frequencia;
+	public $data;
 
 	/**
 	 * @return array validation rules for model attributes.
