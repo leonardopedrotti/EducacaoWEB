@@ -264,3 +264,10 @@ div.search-form
 {
 	background: #c0c0c0;
 }
+
+.presente{
+	background-color: #8df48a;
+}
+.ausente{
+	background-color: #ff8c8c;
+}

@@ -34,7 +34,7 @@ class Ttur_alunoController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','confirmarPresenca','confirmarAusencia','consultar'),
+				'actions'=>array('index','view','confirmarPresenca','confirmarAusencia','consultar','buscarPresenca'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -144,29 +144,6 @@ class Ttur_alunoController extends Controller
 		$model->id_turma = $_GET['idTurma'];
 		$model->data = $data->format('Y-m-d');		
 		
-		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
-				'criteria'=>array(
-						'select'=>array(
-								't.id',
-								't.id_turma',
-								't.id_aluno',
-								'freq.frequencia as frequencia',
-						),
-						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
-						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
-						'limit'=>100,
-						'together'=>false,
-						'with'=>array()
-				),
-				'pagination'=>false,
-		));
-		
-		$this->render('indexPro',array(
-				'dataProvider'=>$dataProvider,
-				'model'=>$model,
-		));*/
-		
-		
 		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
 				'criteria'=>array(
 						'select'=>array(
@@ -174,7 +151,7 @@ class Ttur_alunoController extends Controller
 								't.id_turma',
 								't.id_aluno',
 						),
-						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'condition'=>'t.id_turma = '.$model->id_turma,
 						'limit'=>100,
 						'together'=>false,
 						'with'=>array()
@@ -211,36 +188,11 @@ class Ttur_alunoController extends Controller
 	}
 	
 	public function actionConsultar()
-	{
-		
-		
-		//$data = new DateTime();
+	{		
 		$model=new ttur_aluno;
 		$model->id_turma = $_GET['idTurma'];
-		$model->data = $_GET['data'];
+		$model->data = $_GET['ttur_aluno']['data'];
 	
-		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
-				'criteria'=>array(
-						'select'=>array(
-								't.id',
-								't.id_turma',
-								't.id_aluno',
-								'freq.frequencia as frequencia',
-						),
-						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
-						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$_GET['data'].'\' )',
-						'limit'=>100,
-						'together'=>false,
-						'with'=>array()
-				),
-				'pagination'=>false,
-		));
-	
-		$this->render('indexPro',array(
-				'dataProvider'=>$dataProvider,
-				'model'=>$model,
-		));*/
-		
 		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
 				'criteria'=>array(
 						'select'=>array(
@@ -248,7 +200,7 @@ class Ttur_alunoController extends Controller
 								't.id_turma',
 								't.id_aluno',
 						),
-						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'condition'=>'t.id_turma = '.$model->id_turma,
 						'limit'=>100,
 						'together'=>false,
 						'with'=>array()
@@ -258,13 +210,13 @@ class Ttur_alunoController extends Controller
 		
 		$iterator = new CDataProviderIterator($dataProvider);
 		foreach($iterator as $ttur_aluno) {
-				
+			$ttur_aluno->data = $model->data;
 			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
 					'criteria'=>array(
 							'select'=>array(
 									't.frequencia',
 							),
-							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$model->data.'\'',
 							'limit'=>100,
 							'together'=>false,
 							'with'=>array()
@@ -273,7 +225,7 @@ class Ttur_alunoController extends Controller
 			));
 				
 			$iteratorFreq = new CDataProviderIterator($dataProviderFreq);
-			foreach($iteratorFreq as $tfrequencia) {
+			foreach($iteratorFreq as $tfrequencia) {				
 				$ttur_aluno->frequencia = $tfrequencia->frequencia;
 			}
 		}
@@ -297,7 +249,7 @@ class Ttur_alunoController extends Controller
 		
 		$dataProvider=new CActiveDataProvider('tfrequencia', array(
 				'criteria'=>array(
-						'condition'=>'data = \''.$_GET['data'].'\' AND id_aluno='.$_GET['idAluno'],
+						'condition'=>'data = \''.$model->data.'\' AND id_aluno='.$model->id_aluno,
 				)
 		));
 		
@@ -310,36 +262,11 @@ class Ttur_alunoController extends Controller
 		
 		if(!$encontrou){
 			$modelFreq=new tfrequencia;
-			$modelFreq->id_aluno = $_GET['idAluno'];
+			$modelFreq->id_aluno = $model->id_aluno;
 			$modelFreq->frequencia = 1;
-			$modelFreq->data = $_GET['data'];
+			$modelFreq->data = $model->data;
 			$modelFreq->save();
-		}
-		
-		//$data = new DateTime();
-		
-		/*$dataProvider=new CActiveDataProvider('ttur_aluno', array(
-				'criteria'=>array(
-						'select'=>array(
-								't.id',
-								't.id_turma',
-								't.id_aluno',
-								'freq.frequencia as frequencia',
-						),
-						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
-						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
-						'limit'=>100,
-						'together'=>false,
-						'with'=>array()
-				),
-				'pagination'=>false,
-		));
-		
-		$this->render('indexPro',array(
-				'dataProvider'=>$dataProvider,
-		));*/
-		
-		
+		}		
 		
 		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
 				'criteria'=>array(
@@ -348,7 +275,7 @@ class Ttur_alunoController extends Controller
 								't.id_turma',
 								't.id_aluno',
 						),
-						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'condition'=>'t.id_turma = '.$model->id_turma,
 						'limit'=>100,
 						'together'=>false,
 						'with'=>array()
@@ -358,13 +285,13 @@ class Ttur_alunoController extends Controller
 		
 		$iterator = new CDataProviderIterator($dataProvider);
 		foreach($iterator as $ttur_aluno) {
-		
+			$ttur_aluno->data = $model->data;
 			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
 					'criteria'=>array(
 							'select'=>array(
 									't.frequencia',
 							),
-							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$model->data.'\'',
 							'limit'=>100,
 							'together'=>false,
 							'with'=>array()
@@ -386,55 +313,6 @@ class Ttur_alunoController extends Controller
 	
 	public function actionConfirmarAusencia()
 	{
-		/*$encontrou = false;
-		$data = new DateTime();
-		
-		$dataProvider=new CActiveDataProvider('tfrequencia', array(
-				'criteria'=>array(
-						'condition'=>'data = \''.$data->format('Y-m-d').'\' AND id_aluno='.$_GET['idAluno'],
-				)
-		));
-		
-		$iterator = new CDataProviderIterator($dataProvider);
-		foreach($iterator as $tfrequencia) {
-			$tfrequencia->frequencia = 0;
-			$tfrequencia->save();
-			$encontrou = true;
-		}
-		
-		if(!$encontrou){
-			$model=new tfrequencia;
-			$model->id_aluno = $_GET['idAluno'];
-			$model->frequencia = 0;
-			$model->data = $data->format('Y-m-d');
-			$model->save();
-		}
-		
-		$data = new DateTime();
-		
-		$dataProvider=new CActiveDataProvider('ttur_aluno', array(
-				'criteria'=>array(
-						'select'=>array(
-								't.id',
-								't.id_turma',
-								't.id_aluno',
-								'freq.frequencia as frequencia',
-						),
-						'join'=>'LEFT JOIN tfrequencia freq ON t.id = freq.id_aluno',
-						'condition'=>'t.id_turma = '.$_GET['idTurma'].' and (freq.data is null or freq.data = \''.$data->format('Y-m-d').'\' )',
-						'limit'=>100,
-						'together'=>false,
-						'with'=>array()
-				),
-				'pagination'=>false,
-		));
-		
-		$this->render('indexPro',array(
-				'dataProvider'=>$dataProvider,
-		));*/
-		
-		
-		
 		$model=new ttur_aluno;
 		$model->id_turma = $_GET['idTurma'];
 		$model->data = $_GET['data'];
@@ -445,7 +323,7 @@ class Ttur_alunoController extends Controller
 		
 		$dataProvider=new CActiveDataProvider('tfrequencia', array(
 				'criteria'=>array(
-						'condition'=>'data = \''.$_GET['data'].'\' AND id_aluno='.$_GET['idAluno'],
+						'condition'=>'data = \''.$model->data.'\' AND id_aluno='.$model->id_aluno,
 				)
 		));
 		
@@ -460,7 +338,7 @@ class Ttur_alunoController extends Controller
 			$modelFreq=new tfrequencia;
 			$modelFreq->id_aluno = $_GET['idAluno'];
 			$modelFreq->frequencia = 0;
-			$modelFreq->data = $_GET['data'];
+			$modelFreq->data = $model->data;
 			$modelFreq->save();
 		}
 		
@@ -471,7 +349,7 @@ class Ttur_alunoController extends Controller
 								't.id_turma',
 								't.id_aluno',
 						),
-						'condition'=>'t.id_turma = '.$_GET['idTurma'],
+						'condition'=>'t.id_turma = '.$model->id_turma,
 						'limit'=>100,
 						'together'=>false,
 						'with'=>array()
@@ -481,13 +359,13 @@ class Ttur_alunoController extends Controller
 		
 		$iterator = new CDataProviderIterator($dataProvider);
 		foreach($iterator as $ttur_aluno) {
-		
+			$ttur_aluno->data = $model->data;
 			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
 					'criteria'=>array(
 							'select'=>array(
 									't.frequencia',
 							),
-							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$_GET['data'].'\'',
+							'condition'=>'t.id_aluno = '.$ttur_aluno->id.'  and t.data = \''.$model->data.'\'',
 							'limit'=>100,
 							'together'=>false,
 							'with'=>array()
@@ -506,6 +384,7 @@ class Ttur_alunoController extends Controller
 				'model'=>$model,
 		));
 	}
+
 
 	/**
 	 * Manages all models.
