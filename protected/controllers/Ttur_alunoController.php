@@ -161,7 +161,7 @@ class Ttur_alunoController extends Controller
 		
 		$iterator = new CDataProviderIterator($dataProvider);
 		foreach($iterator as $ttur_aluno) {
-			
+			$ttur_aluno->data = $model->data;
 			$dataProviderFreq=new CActiveDataProvider('tfrequencia', array(
 				'criteria'=>array(
 						'select'=>array(
